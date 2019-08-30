@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Senai.Ekips.WebApi.Domains;
 using Senai.Ekips.WebApi.Repositories;
 
@@ -16,12 +20,19 @@ namespace Senai.Ekips.WebApi.Controllers
     public class FuncionariosController : ControllerBase
     {
         FuncionarioRepository FuncionarioRepository = new FuncionarioRepository();
-
-        [Authorize(Roles = "ADMINISTRADOR")]
+        
+        [Authorize]
         [HttpGet]
         public IEnumerable<Funcionarios> Listar()
         {
+            // pegar o valor que vem do token
+            
+
+            // verificar a permissao dele
+            // se for admin
             return FuncionarioRepository.Listar();
+            // senao
+                // retornar a lista somente com um funcionario
         }
 
         [Authorize(Roles = "ADMINISTRADOR")]

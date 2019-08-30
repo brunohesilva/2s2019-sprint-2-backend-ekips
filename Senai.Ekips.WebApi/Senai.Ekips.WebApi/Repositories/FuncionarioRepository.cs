@@ -1,9 +1,12 @@
-﻿using Senai.Ekips.WebApi.Domains;
+﻿using Microsoft.EntityFrameworkCore;
+using Senai.Ekips.WebApi.Domains;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Senai.Ekips.WebApi.ViewModels;
+
 
 namespace Senai.Ekips.WebApi.Repositories
 {
@@ -11,8 +14,24 @@ namespace Senai.Ekips.WebApi.Repositories
     {
         private string StringConexao = "Data Source=.\\SqlExpress; initial catalog=M_Ekips;User Id=sa;Pwd=132;";
 
+        public Funcionarios BuscarPorId(int id)
+        {
+            using (EkipsContext ctx = new EkipsContext())
+            {
+                // buscar os dados no banco e verificar se este email e senha sao validos
+                Funcionarios FuncionarioBuscado = ctx.Funcionarios.FirstOrDefault(x => x.IdUsuario == id);
+                if (FuncionarioBuscado == null)
+                {
+                    return null;
+                }
+                return FuncionarioBuscado;
+            }
+        }
+
         public List<Funcionarios> Listar()
         {
+
+            // criar um metodo para retornar somente o funcionario por id (id do usuario que vem do token)
 
             List<Funcionarios> funcionarios = new List<Funcionarios>();
 
