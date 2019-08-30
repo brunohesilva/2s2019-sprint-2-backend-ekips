@@ -94,5 +94,32 @@ namespace Senai.Ekips.WebApi.Repositories
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void Alterar(Funcionarios funcionario)
+        {
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string Query = "UPDATE Funcionarios SET Nome = @Nome WHERE IdFuncionario = @IdFuncionario";
+                SqlCommand cmd = new SqlCommand(Query, con);
+                cmd.Parameters.AddWithValue("@IdFuncionario", funcionario.IdFuncionario);
+                cmd.Parameters.AddWithValue("@Nome", funcionario.Nome);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void Deletar(int id)
+        {
+            string Query = "DELETE FROM Funcionarios WHERE IdFuncionario = @IdFuncionario";
+            // conexao
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                // comando
+                SqlCommand cmd = new SqlCommand(Query, con);
+                cmd.Parameters.AddWithValue("@IdFuncionario", id);
+                con.Open();
+                // executar
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

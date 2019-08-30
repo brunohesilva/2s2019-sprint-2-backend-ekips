@@ -99,7 +99,7 @@ namespace Senai.Ekips.WebApi.Repositories
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string Query = "UPDATE Funcionarios SET Nome = @Nome WHERE IdFuncionario = @IdFuncionario";
+                string Query = "UPDATE Cargos SET Nome = @Nome WHERE IdCargo = @IdCargo";
                 SqlCommand cmd = new SqlCommand(Query, con);
                 cmd.Parameters.AddWithValue("@IdCargo", cargo.IdCargo);
                 cmd.Parameters.AddWithValue("@Nome", cargo.Nome);
@@ -107,5 +107,6 @@ namespace Senai.Ekips.WebApi.Repositories
                 cmd.ExecuteNonQuery();
             }
         }
+        
     }
 }

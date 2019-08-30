@@ -81,21 +81,6 @@ ON Funcionarios.IdCargo = Cargos.IdCargo
 JOIN Permissao 
 ON Usuarios.IdPermissao = Permissao.IdPermissao
 
-ALTER TABLE Usuarios add Permissao VARCHAR(255)
-
-INSERT INTO Usuarios(Permissao) VALUES('COMUM')
-
-INSERT INTO Usuarios(Permissao) VALUES('ADMINISTRADOR')
-
-update Usuarios set Permissao = 'COMUM' WHERE IdUsuario = 1
-
-
-update Usuarios set Permissao = 'ADMINISTRADOR' WHERE IdUsuario = 2
-
-
-
-
-
 
 
 
